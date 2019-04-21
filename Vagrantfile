@@ -94,7 +94,7 @@ Vagrant.configure(2) do |config|
     mkdir ~vagrant/.ssh
     chmod 700 ~vagrant/.ssh
     cp .dotfiles/.ssh/rc .ssh/rc
-    echo .dotfiles/.ssh/config >> .ssh/config
+    cat .dotfiles/.ssh/config >> .ssh/config
     git clone https://github.com/tmux-plugins/tpm ~vagrant/.tmux/plugins/tpm
   SHELL
 
