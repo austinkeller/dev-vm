@@ -20,3 +20,6 @@ Some assumptions are made, like that there are `C:\`, `D:\`, and `G:\` drives
  available on the host. This also copies in a public key that would need to be
  replaced with a key for which you have access to the corresponding private key.
 
+### Future Directions
+
+Moving as much functionality as possible to an Ansible script would give me (1) a chance to learn an important DevOps tool and (2) allow me to effortlessly provision a comfortable development environment not just locally, but on any remote provider.
