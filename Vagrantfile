@@ -7,14 +7,11 @@ VAGRANT_BOX = 'ubuntu/bionic64'
 # Memorable name for your
 VM_NAME = 'dev-vm'
 
-# VM User — 'vagrant' by default
-VM_USER = 'vagrant'
-
 # Host folder to sync
 HOST_PATH = '~/' + VM_NAME
 
 # Where to sync to on Guest — 'vagrant' is the default user name
-GUEST_PATH = '/home/' + VM_USER + '/' + VM_NAME
+GUEST_PATH = '/home/vagrant/' + VM_NAME
 
 # VM Port — uncomment this to use NAT instead of DHCP
 VM_PORT = 8080
@@ -62,14 +59,14 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder 'G:/', '/g'
 
   # Disable default Vagrant folder, use a unique path per project
-  config.vm.synced_folder '.', '/home/' + VM_USER + '', disabled: true
+  config.vm.synced_folder '.', '/home/vagrant', disabled: true
 
   # Allow access to host's ssh agent for Github access
   config.ssh.forward_agent = true
 
   # Add public key for ssh from WSL
-  config.vm.provision "file", source: "vagrant_init/.ssh/id_rsa_dev-vm.pub", destination: "~/.ssh/me.pub"
-  config.vm.provision "shell", inline: "cat ~/.ssh/me.pub >> ~/.ssh/authorized_keys"
+  config.vm.provision "file", source: "vagrant_init/.ssh/id_rsa_dev-vm.pub", destination: "~vagrant/.ssh/me.pub"
+  config.vm.provision "shell", inline: "cat ~vagrant/.ssh/me.pub >> ~vagrant/.ssh/authorized_keys"
 
   # Install Docker
   config.vm.provision "docker"
@@ -94,11 +91,11 @@ Vagrant.configure(2) do |config|
     ln -s .dotfiles/.tmux.conf
     ln -s .dotfiles/.vimrc
     ln -s .dotfiles/.inputrc
-    mkdir ~/.ssh
-    chmod 700 ~/.ssh
+    mkdir ~vagrant/.ssh
+    chmod 700 ~vagrant/.ssh
     cp .dotfiles/.ssh/rc .ssh/rc
     echo .dotfiles/.ssh/config >> .ssh/config
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~vagrant/.tmux/plugins/tpm
   SHELL
 
   # Add bin to path
