@@ -71,6 +71,13 @@ Vagrant.configure(2) do |config|
   # Install Docker
   config.vm.provision "docker"
 
+  # Install docker-machine
+  config.vm.provision "shell", inline: <<-SHELL
+    base=https://github.com/docker/machine/releases/download/v0.16.0 && \
+      curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine && \
+      sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+  SHELL
+
   # Configure port forwarding to support remote access to Docker Engine
   config.vm.network "forwarded_port", guest: 2376, host: 2376
 
