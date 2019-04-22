@@ -96,6 +96,7 @@ Vagrant.configure(2) do |config|
     cp .dotfiles/.ssh/rc .ssh/rc
     cat .dotfiles/.ssh/config >> .ssh/config
     git clone https://github.com/tmux-plugins/tpm ~vagrant/.tmux/plugins/tpm
+    cat .dotfiles/.bashrc_components/wsl_colors >> .bashrc
   SHELL
 
   # Add bin to path
