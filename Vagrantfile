@@ -101,7 +101,7 @@ Vagrant.configure(2) do |config|
   # Add bin to path
   config.vm.provision "shell", inline: <<-SHELL
     echo >> .bashrc
-    echo PATH="\$PATH:~/dev-vm/bin" >> .bashrc
+    echo PATH='$PATH:~/dev-vm/bin' >> .bashrc
   SHELL
 
   # Add secrets
