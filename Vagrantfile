@@ -72,6 +72,10 @@ Vagrant.configure(2) do |config|
   # Configure port forwarding to support remote access to Docker Engine
   config.vm.network "forwarded_port", guest: 2376, host: 2376
 
+  # Make host docker VM available to guest
+  #   For Windows:
+  #     * docker-machine env will give a roughly usable shell script. Windows path must be converted, however.
+
   # Install packages
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
