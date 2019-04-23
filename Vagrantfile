@@ -13,9 +13,6 @@ HOST_PATH = '~/' + VM_NAME
 # Where to sync to on Guest — 'vagrant' is the default user name
 GUEST_PATH = '/home/vagrant/' + VM_NAME
 
-# VM Port — uncomment this to use NAT instead of DHCP
-VM_PORT = 8080
-
 Vagrant.configure(2) do |config|
   # Vagrant box from Hashicorp
   config.vm.box = VAGRANT_BOX
@@ -37,14 +34,8 @@ Vagrant.configure(2) do |config|
   # Set disk size
   config.disksize.size = '50GB'
 
-  # # Bridged — uncomment only this for bridged network
-  # config.vm.network "public_network", bridge: "Hyper-V Virtual Ethernet Adapter"
-
   # DHCP — comment this out if planning on using NAT instead
   config.vm.network "private_network", type: "dhcp"
-
-  # Port forwarding — uncomment this to use NAT instead of DHCP
-  config.vm.network "forwarded_port", guest: 80, host: VM_PORT
 
   # Sync folder
   config.vm.synced_folder HOST_PATH, GUEST_PATH
