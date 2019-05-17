@@ -14,6 +14,10 @@ HOST_PATH = '~/' + VM_NAME
 GUEST_PATH = '/home/vagrant/' + VM_NAME
 
 Vagrant.configure(2) do |config|
+
+  # Installs plugins if not already installed
+  config.vagrant.plugins = ["vagrant-timezone", "vagrant-disksize"]
+
   # Vagrant box from Hashicorp
   config.vm.box = VAGRANT_BOX
   
